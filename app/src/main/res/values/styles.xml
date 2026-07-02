@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Framework translucent theme (no AppCompat dependency) so the TWA splash shows
+         over the web content while Chrome warms up. -->
+    <style name="Theme.LauncherActivity" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+</resources>

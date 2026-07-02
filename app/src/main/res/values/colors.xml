@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">{{THEME_COLOR}}</color>
+    <color name="colorPrimaryDark">{{THEME_COLOR}}</color>
+    <color name="navigationColor">{{NAV_COLOR}}</color>
+    <color name="backgroundColor">{{BACKGROUND_COLOR}}</color>
+    <color name="ic_launcher_background">{{BACKGROUND_COLOR}}</color>
+</resources>
