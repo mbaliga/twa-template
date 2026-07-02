@@ -38,6 +38,17 @@ token names are the contract — **renaming or removing one breaks the plugin's 
 | `{{VERSION_CODE}}` | Integer version code (**unquoted** in `app/build.gradle`) | `1` |
 | `{{SHA256_FINGERPRINT}}` | SHA-256 of the signing cert — for `.well-known/assetlinks.json` only | `AB:CD:…:EF` |
 
+`scripts/instantiate.py` is the **executable form of this contract** — the reference substitutor
+`play-publisher` mirrors and the smoke test uses:
+
+```bash
+python3 scripts/instantiate.py --values values.json   # real instantiation
+python3 scripts/instantiate.py --sample               # dummy values (what CI builds)
+```
+
+It fails loudly if a value is missing, if a key isn't part of the contract, or if any `{{TOKEN}}`
+is left un-substituted.
+
 **Instantiation flow (what the plugin/CI does):**
 1. Copy the tree, substitute the tokens above.
 2. Generate launcher icons from `{{ICON_URL}}` (adaptive `mipmap-anydpi-v26` + raster `mipmap-*dpi`
@@ -94,8 +105,19 @@ app/
     res/drawable/              ic_launcher + splash (vector placeholders, replaced at instantiation)
     res/xml/                   shortcuts · filepaths
 .well-known/assetlinks.json    PUBLISH ON THE SITE (not bundled) — proves app↔site ownership
-.github/workflows/build.yml    debug APK on push; signed AAB when secrets present
+scripts/instantiate.py         executable instantiation contract (substitute + validate tokens)
+.github/workflows/
+  build.yml                    ships to the user's repo: builds the real app; SKIPS in this
+                               template repo (tokens still present) so it never falsely fails
+  template-smoke.yml           this repo's own gate: instantiate sample values, then build the APK
 ```
+
+### CI behavior
+
+- **In this template repo:** `template-smoke.yml` instantiates sample values and builds a real APK
+  (the buildability gate); `build.yml`'s build jobs skip because the tokens are still present.
+- **In an instantiated repo:** `build.yml` builds the real app and **fails loudly** if any `{{TOKEN}}`
+  was left un-substituted; `template-smoke.yml` is not carried over by `play-publisher`.
 
 ---
 

@@ -1,0 +1,31 @@
+name: template-smoke
+
+# The template repo's own gate: instantiate the {{TOKEN}}s with sample values,
+# then actually build the APK — proving the scaffold is buildable before anyone
+# clones it. play-publisher does not carry this workflow into user repos.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Instantiate with sample values
+        run: python3 scripts/instantiate.py --sample
+      - name: Assemble debug APK (sample instantiation)
+        run: ./gradlew :app:assembleDebug --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sample-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
