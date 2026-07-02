@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- No app shortcuts by default. play-publisher fills this from the web manifest's
+     "shortcuts" array when the user's PWA declares any. -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android" />

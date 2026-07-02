@@ -1,0 +1,11 @@
+[
+  {
+    "//": "PUBLISH THIS FILE AT https://{{HOST}}/.well-known/assetlinks.json — it is NOT bundled in the APK. It is what lets Android verify the app owns the site and hide the URL bar. {{SHA256_FINGERPRINT}} is the SHA-256 of the release/upload signing certificate (and the Play App Signing cert once enrolled). List every fingerprint that will sign a shipped build.",
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "{{APP_ID}}",
+      "sha256_cert_fingerprints": ["{{SHA256_FINGERPRINT}}"]
+    }
+  }
+]

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appName">{{APP_NAME}}</string>
+    <string name="launcherName">{{LAUNCHER_NAME}}</string>
+    <string name="launchUrl">{{START_URL}}</string>
+    <string name="hostName">{{HOST}}</string>
+
+    <!-- Must match the JSON published at https://{{HOST}}/.well-known/assetlinks.json -->
+    <string name="assetStatements">
+        [{
+            \"relation\": [\"delegate_permission/common.handle_all_urls\"],
+            \"target\": {
+                \"namespace\": \"web\",
+                \"site\": \"https://{{HOST}}\"
+            }
+        }]
+    </string>
+</resources>
