@@ -106,6 +106,7 @@ app/
     res/xml/                   shortcuts · filepaths
 .well-known/assetlinks.json    PUBLISH ON THE SITE (not bundled) — proves app↔site ownership
 scripts/instantiate.py         executable instantiation contract (substitute + validate tokens)
+docs/PORTING_PLAN.md           multi-platform porting plan (PLAN only; not part of the template contract)
 .github/workflows/
   build.yml                    ships to the user's repo: builds the real app; SKIPS in this
                                template repo (tokens still present) so it never falsely fails
