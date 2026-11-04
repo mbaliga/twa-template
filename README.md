@@ -122,6 +122,18 @@ docs/PORTING_PLAN.md           multi-platform porting plan (PLAN only; not part 
 
 ---
 
+## Desktop mode (windowed, mouse and keyboard)
+
+The manifest declares `android:resizeableActivity="true"` and a default freeform window size
+(`<layout>` 900x700dp, no minimum size, so none is imposed on phone split-screen; not device-tested). `LauncherActivity` is
+only a trampoline: the page itself runs in Chrome, so hover states, right-click menus, wheel
+scrolling, drag and drop, Tab order and keyboard shortcuts are properties of **your PWA**, not of this
+shell, and the shell has nothing to add for them. PWA authors should check these in a resized window.
+Whether Chrome inside a TWA behaves correctly in freeform windows is NEEDS-DEVICE-VALIDATION; it has
+not been tested.
+
+---
+
 ## Do not touch
 
 - **The `{{TOKEN}}` names are `play-publisher`'s contract.** Renaming/removing one silently breaks
