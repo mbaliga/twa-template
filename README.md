@@ -106,6 +106,7 @@ app/
     res/xml/                   shortcuts · filepaths
 .well-known/assetlinks.json    PUBLISH ON THE SITE (not bundled) — proves app↔site ownership
 scripts/instantiate.py         executable instantiation contract (substitute + validate tokens)
+docs/PORTING_PLAN.md           multi-platform porting plan (PLAN only; not part of the template contract)
 .github/workflows/
   build.yml                    ships to the user's repo: builds the real app; SKIPS in this
                                template repo (tokens still present) so it never falsely fails
@@ -118,6 +119,18 @@ scripts/instantiate.py         executable instantiation contract (substitute + v
   (the buildability gate); `build.yml`'s build jobs skip because the tokens are still present.
 - **In an instantiated repo:** `build.yml` builds the real app and **fails loudly** if any `{{TOKEN}}`
   was left un-substituted; `template-smoke.yml` is not carried over by `play-publisher`.
+
+---
+
+## Desktop mode (windowed, mouse and keyboard)
+
+The manifest declares `android:resizeableActivity="true"` and a default freeform window size
+(`<layout>` 900x700dp, no minimum size, so none is imposed on phone split-screen; not device-tested). `LauncherActivity` is
+only a trampoline: the page itself runs in Chrome, so hover states, right-click menus, wheel
+scrolling, drag and drop, Tab order and keyboard shortcuts are properties of **your PWA**, not of this
+shell, and the shell has nothing to add for them. PWA authors should check these in a resized window.
+Whether Chrome inside a TWA behaves correctly in freeform windows is NEEDS-DEVICE-VALIDATION; it has
+not been tested.
 
 ---
 
