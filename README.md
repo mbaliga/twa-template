@@ -137,3 +137,7 @@ scripts/instantiate.py         executable instantiation contract (substitute + v
 Instantiated apps are the user's own; this template itself is published under **A System of Cells**
 and links to [mdhv.xyz](https://mdhv.xyz) + Instagram [@asystemofcells](https://instagram.com/asystemofcells).
 No payment forms, ads, or secrets live in the template.
+
+## Licence
+
+Licensed under the [Apache License 2.0](LICENSE) (SPDX: `Apache-2.0`). Copyright 2026 Madhav Baliga.
